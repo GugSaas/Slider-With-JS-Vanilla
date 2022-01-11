@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Vanilla JS</title>
+</head>
+<body>
+    <style>
+        .container{
+            position: relative;
+            height: 500px;
+            height: 500px;
+        }
+
+        .container img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .bullets{
+            text-align: center;
+        }
+
+        .single-bullet{
+            margin: 10px 8px;
+            cursor: pointer;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: #ccc;
+        }
+
+        .active-bullet{
+            background-color: #333;
+        }
+    </style>
+
+    <div class="container">
+        <img style="opacity: 1;" src="https://cdn.pixabay.com/photo/2021/12/19/12/27/road-6881040_960_720.jpg">
+        <img src="https://cdn.pixabay.com/photo/2022/01/01/11/19/ice-6907394_960_720.jpg">
+        <img src="https://cdn.pixabay.com/photo/2015/01/17/13/52/gem-602252_960_720.jpg">
+    </div>
+
+    <div class="bullets">
+        <div class="single-bullet active-bullet"></div>
+        <div class="single-bullet"></div>
+        <div class="single-bullet"></div>
+    </div>
+
+    <script>
+        var lastIndex = 0;
+
+        var images = document.querySelectorAll('.container img');
+
+        images.forEach((item, index)=>{
+            document.querySelectorAll('.single-bullet')[index]
+            .addEventListener('click', ()=>{
+                var lastImage = document.querySelectorAll('.container img')[lastIndex];
+                var actualImage = document.querySelectorAll('.container img')[index];
+
+                document.querySelectorAll('.single-bullet')[lastIndex]
+                .classList.remove('active-bullet');
+                document.querySelectorAll('.single-bullet')[index]
+                .classList.add('active-bullet');
+
+                lastImage.style.opacity = '0';
+                actualImage.style.opacity = '1';
+
+                lastIndex = index;
+            })
+        })
+    </script>
+</body>
+</html>
